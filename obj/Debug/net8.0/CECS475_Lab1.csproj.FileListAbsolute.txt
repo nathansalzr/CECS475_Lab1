@@ -1,0 +1,15 @@
+/home/nate/CECS475_Lab1/obj/Debug/net8.0/CECS475_Lab1.GeneratedMSBuildEditorConfig.editorconfig
+/home/nate/CECS475_Lab1/obj/Debug/net8.0/CECS475_Lab1.AssemblyInfoInputs.cache
+/home/nate/CECS475_Lab1/obj/Debug/net8.0/CECS475_Lab1.AssemblyInfo.cs
+/home/nate/CECS475_Lab1/obj/Debug/net8.0/CECS475_Lab1.csproj.CoreCompileInputs.cache
+/home/nate/CECS475_Lab1/obj/Debug/net8.0/CECS475_Lab1.sourcelink.json
+/home/nate/CECS475_Lab1/bin/Debug/net8.0/CECS475_Lab1
+/home/nate/CECS475_Lab1/bin/Debug/net8.0/CECS475_Lab1.deps.json
+/home/nate/CECS475_Lab1/bin/Debug/net8.0/CECS475_Lab1.runtimeconfig.json
+/home/nate/CECS475_Lab1/bin/Debug/net8.0/CECS475_Lab1.dll
+/home/nate/CECS475_Lab1/bin/Debug/net8.0/CECS475_Lab1.pdb
+/home/nate/CECS475_Lab1/obj/Debug/net8.0/CECS475_Lab1.dll
+/home/nate/CECS475_Lab1/obj/Debug/net8.0/refint/CECS475_Lab1.dll
+/home/nate/CECS475_Lab1/obj/Debug/net8.0/CECS475_Lab1.pdb
+/home/nate/CECS475_Lab1/obj/Debug/net8.0/CECS475_Lab1.genruntimeconfig.cache
+/home/nate/CECS475_Lab1/obj/Debug/net8.0/ref/CECS475_Lab1.dll
