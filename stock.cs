@@ -1,88 +1,70 @@
 //stock.cs
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
+
 namespace Stock
 {
-//-----------------------------------------------------------------------------------
-  public class Stock
-  {
-    public event EventHandler<StockNotification> StockEvent;
-    
-    //Name of our stock.
-    private string _name;
-    //Starting value of the stock.
-    private int _initialValue;
-    //Max change of the stock that is possible.
-    private int _maxChange;
-    //Threshold value where we notify subscribers to the event.
-    private int _threshold;
-    //Amount of changes the stock goes through.
-    private int _numChanges;
-    //Current value of the stock.
-    private int _currentValue;
- 
-    private readonly Thread _thread;
-    public string StockName { get => _name; set => _name = value; }
-    public int InitialValue 
-    public int CurrentValue 
-    public int MaxChange 
-    public int Threshold 
-    public int NumChanges 
- //-----------------------------------------------------------------------------
- 
-    /// <summary>
-    /// Stock class that contains all the information and changes of the stock
-    /// </summary>
-    /// <param name="name">Stock name</param>
-    /// <param name="startingValue">Starting stock value</param>
-    /// <param name="maxChange">The max value change of the stock</param>
-    /// <param name="threshold">The range for the stock</param>
-    public Stock(string name, int startingValue, int maxChange, int threshold)
+    // Simulates a stock whose value changes on a background thread
+    public class Stock
     {
-      _name = name;
-      _initialValue = startingValue;
-      _currentValue = InitialValue;
-      _maxChange = maxChange;
-      _threshold = threshold;
-      this._thread = new Thread(new ThreadStart(______________________));
-      _thread.________________;
+        public event EventHandler<StockNotification> StockEvent; // Event for threshold notification
+
+        private string name;
+        private int initialValue;
+        private int maxChange;
+        private int threshold;
+        private int numChanges;
+        private int currentValue;
+        private readonly Thread thread;
+
+        public string StockName { get => name; set => name = value; }
+        public int InitialValue => initialValue;
+        public int CurrentValue => currentValue;
+        public int MaxChange => maxChange;
+        public int Threshold => threshold;
+        public int NumChanges => numChanges;
+
+        // Initialize stock and start simulation thread
+        public Stock(string name, int startingValue, int maxChange, int threshold)
+        {
+            this.name = name;
+            this.initialValue = startingValue;
+            this.currentValue = startingValue;
+            this.maxChange = maxChange;
+            this.threshold = threshold;
+            this.numChanges = 0;
+            this.thread = new Thread(new ThreadStart(Activate));
+            this.thread.IsBackground = true;
+            this.thread.Start();
+        }
+
+        // Simulates the stock changing value every 500ms
+        public void Activate()
+        {
+            for (int i = 0; i < 25; i++)
+            {
+                Thread.Sleep(500);
+                ChangeStockValue();
+            }
+        }
+
+        // Updates stock value and fires event if out of threshold
+        public void ChangeStockValue()
+        {
+            var rand = new Random(Guid.NewGuid().GetHashCode());
+            int change = rand.Next(1, maxChange + 1);
+            if (rand.Next(2) == 0) change = -change;
+            currentValue += change;
+            numChanges++;
+            if (Math.Abs(currentValue - initialValue) > threshold)
+            {
+                StockEvent?.Invoke(this, new StockNotification(StockName, currentValue, numChanges));
+            }
+        }
     }
-    
-    /// <summary>
-    /// Activates the threads synchronizations
-    /// </summary>
-    public void Activate()
-    {
-      for (int i = 0; i < 25; i++)
-      {
-        Thread.Sleep(500); // 1/2 second
-        ChangeStockValue();
-      }
-    }
-    
-//--------------------------------------------------------------------------------------
-    // delegate
-    //public delegate void StockNotification(String stockName, int currentValue, int numberChanges);
-    // event
-    //public event StockNotification ProcessComplete;
-    //------------------------------------------------------------------------------------------
-    /// <summary>
-    /// Changes the stock value and also raising the event of stock value changes
-    /// </summary>
-    public void ChangeStockValue()
-    {
-      var rand = new Random();
-      CurrentValue += rand.Next(1, MaxChange);
-      NumChanges++;
-      if ((CurrentValue - InitialValue) > Threshold)
-      { //RAISE THE EVENT
-          _____ Invoke _____________________________________________________
- 
-    }
-  }
-//------------------------------------------------------------------------------------------------
- }
 }
+
